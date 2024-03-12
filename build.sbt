@@ -55,4 +55,4 @@ lazy val circe = module(identifier = Some("circe"))
       "io.circe" %%% "circe-core" % Version.Circe ::
         Nil
   )
-  .dependsOn(core)
+  .dependsOn(core % "compile->compile;test->test")

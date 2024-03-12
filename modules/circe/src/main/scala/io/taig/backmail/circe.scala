@@ -5,6 +5,7 @@ import io.circe.JsonObject
 import io.circe.syntax.*
 import io.circe.Decoder
 import io.circe.DecodingFailure
+import io.circe.Json
 
 object circe:
   private object Key:
@@ -47,19 +48,29 @@ object circe:
       .flatMap:
         case Key.Block =>
           for
-            children <- cursor.get[List[Template]](Key.Children)
-            paragraph <- cursor.get[Boolean](Key.Paragraph)
+            value <- cursor.get[Json](Key.Value)
+            children <- value.hcursor.get[List[Template]](Key.Children)
+            paragraph <- value.hcursor.get[Boolean](Key.Paragraph)
           yield Template.Block(children, paragraph)
         case Key.Button =>
           for
-            children <- cursor.get[List[Template]](Key.Children)
-            href <- cursor.get[Attribute](Key.Href)
+            value <- cursor.get[Json](Key.Value)
+            children <- value.hcursor.get[List[Template]](Key.Children)
+            href <- value.hcursor.get[Attribute](Key.Href)
           yield Template.Button(children, href)
-        case Key.Headline  => cursor.get[List[Template]](Key.Children).map(Template.Headline.apply)
+        case Key.Headline =>
+          for
+            value <- cursor.get[Json](Key.Value)
+            children <- value.hcursor.get[List[Template]](Key.Children)
+          yield Template.Headline(children)
         case Key.Linebreak => Right(Template.Linebreak)
         case Key.Space     => Right(Template.Space)
-        case Key.Text      => cursor.get[List[Value]](Key.Children).map(Template.Text.apply)
-        case tpe           => Left(DecodingFailure(s"Unknown: '$tpe'", cursor.downField(Key.Type).history))
+        case Key.Text =>
+          for
+            value <- cursor.get[Json](Key.Value)
+            children <- value.hcursor.get[List[Value]](Key.Children)
+          yield Template.Text(children)
+        case tpe => Left(DecodingFailure(s"Unknown: '$tpe'", cursor.downField(Key.Type).history))
 
   given Encoder.AsObject[Template] =
     case Template.Block(children, paragraph) =>
