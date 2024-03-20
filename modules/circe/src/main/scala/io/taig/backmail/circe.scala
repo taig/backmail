@@ -89,12 +89,12 @@ object circe:
     case Template.Space          => JsonObject(Key.Type := Key.Space)
     case Template.Text(children) => JsonObject(Key.Type := Key.Text, Key.Value := JsonObject(Key.Children := children))
 
-  given Decoder[Email] = cursor =>
+  given Decoder[Message] = cursor =>
     for
       title <- cursor.get[String](Key.Title)
       preheader <- cursor.get[Option[String]](Key.Preheader)
       body <- cursor.get[List[Template]](Key.Body)
-    yield Email(title, preheader, body)
+    yield Message(title, preheader, body)
 
-  given Encoder.AsObject[Email] = email =>
-    JsonObject(Key.Title := email.title, Key.Preheader := email.preheader, Key.Body := email.body)
+  given Encoder.AsObject[Message] = message =>
+    JsonObject(Key.Title := message.title, Key.Preheader := message.preheader, Key.Body := message.body)

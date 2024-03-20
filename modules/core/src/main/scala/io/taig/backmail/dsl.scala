@@ -1,8 +1,8 @@
 package io.taig.backmail
 
 object dsl:
-  def email(title: String, preheader: Option[String] = None)(message: Template*): Email =
-    Email(title, preheader, message.toList)
+  def message(title: String, preheader: Option[String] = None)(message: Template*): Message =
+    Message(title, preheader, message.toList)
 
   def block(paragraph: Boolean)(children: Template*): Template.Block = Template.Block(children.toList, paragraph)
   def block(children: Template*): Template.Block = block(paragraph = true)(children*)

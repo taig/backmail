@@ -24,7 +24,7 @@ This library provides data structures to describe emails. The provided printers 
 ```scala
 import io.taig.backmail.dsl.*
 
-val myEmail = email(title = "Title")(
+val myMessage = message(title = "Title")(
   headline(text("Title")),
   block(text(plain("Plaintext"), plain(" "), secret("Secret"))),
   block(paragraph = false)(text("Lorem ipusm dolar sit amet."), linebreak, text("Lorem ipusm dolar sit amet.")),
@@ -41,7 +41,7 @@ An HTML email should always have a plaintext fallback. This printer is intended 
 
 ```scala
 import io.taig.backmail.*
-PlaintextPrinter.print(myEmail)
+PlaintextPrinter.print(myMessage)
 
 val res0: String = Title
 
@@ -61,7 +61,7 @@ Print the email as a plaintext message with hidden secret values so it is safe t
 
 ```scala
 import io.taig.backmail.*
-DebugPrinter.print(myEmail)
+DebugPrinter.print(myMessage)
 
 val res1: String = Title
 

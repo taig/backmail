@@ -6,7 +6,7 @@ import io.taig.backmail.dsl.*
 import io.taig.backmail.circe.given
 
 final class CirceCodecTest extends FunSuite:
-  val sample = email(title = "Title")(
+  val sample = message(title = "Title")(
     headline(text("Title")),
     block(text(plain("Plaintext"), plain(" "), secret("Secret"))),
     block(paragraph = false)(text("Lorem ipusm dolar sit amet."), linebreak, text("Lorem ipusm dolar sit amet.")),
@@ -17,4 +17,4 @@ final class CirceCodecTest extends FunSuite:
   )
 
   test("round-trip"):
-    assertEquals(obtained = sample.asJson.as[Email], expected = Right(sample))
+    assertEquals(obtained = sample.asJson.as[Message], expected = Right(sample))

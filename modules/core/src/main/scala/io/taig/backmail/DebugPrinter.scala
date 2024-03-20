@@ -1,7 +1,7 @@
 package io.taig.backmail
 
 object DebugPrinter extends Printer:
-  override def print(email: Email): String = email.body.map(print).mkString
+  override def print(email: Message): String = email.body.map(print).mkString
 
   def print(template: Template): String = template match
     case Template.Block(children, paragrpah) =>

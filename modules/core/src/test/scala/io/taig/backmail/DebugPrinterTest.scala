@@ -4,7 +4,7 @@ import munit.FunSuite
 import io.taig.backmail.dsl.*
 
 final class DebugPrinterTest extends FunSuite:
-  val sample = email(title = "Title")(
+  val sample = message(title = "Title")(
     headline(text("Title")),
     block(text(plain("Plaintext"), plain(" "), secret("Secret"))),
     block(paragraph = false)(text("Lorem ipusm dolar sit amet."), linebreak, text("Lorem ipusm dolar sit amet.")),
