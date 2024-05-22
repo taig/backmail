@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.1
+
+_2024-05-22_
+
+- Add support for links
+- Upgrade to munit 1.0.0
+- Upgrade to sbt 1.10.0
+
 ## 0.1.0
 
 _2024-03-20_
