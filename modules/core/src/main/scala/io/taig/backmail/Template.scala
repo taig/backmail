@@ -5,5 +5,6 @@ enum Template:
   case Button(children: List[Template], href: Attribute)
   case Headline(children: List[Template])
   case Linebreak
+  case Link(children: List[Template], href: Attribute)
   case Space
   case Text(children: List[Value])

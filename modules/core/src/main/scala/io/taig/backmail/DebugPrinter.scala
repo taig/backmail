@@ -12,8 +12,12 @@ object DebugPrinter extends Printer:
       s"$label: $target"
     case Template.Headline(children) => s"${children.map(print).mkString}\n\n"
     case Template.Linebreak          => "\n"
-    case Template.Space              => "\n\n"
-    case Template.Text(children)     => children.map(print).mkString
+    case Template.Link(children, href) =>
+      val target = href.toList.map(print).mkString
+      val label = children.map(print).mkString
+      s"$label: $target"
+    case Template.Space          => "\n\n"
+    case Template.Text(children) => children.map(print).mkString
 
   def print(value: Value): String = value match
     case Value.Plain(value)  => value

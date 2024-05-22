@@ -13,6 +13,10 @@ final class CirceCodecTest extends FunSuite:
     space,
     button(href = attr(plain("?token="), secret("foobar")))(text("Confirm email")),
     space,
+    block(paragraph = false)(
+      link(href = attr(plain("?token="), secret("foobar")))(text("Hyperlink"))
+    ),
+    space,
     block(paragraph = false)(text("Lorem ipusm dolar sit amet."))
   )
 

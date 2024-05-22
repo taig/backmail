@@ -16,6 +16,7 @@ object circe:
     val Headline: String = "headline"
     val Href: String = "href"
     val Linebreak: String = "linebreak"
+    val Link: String = "link"
     val Paragraph: String = "paragraph"
     val Plain: String = "plain"
     val Preheader: String = "preheader"
@@ -64,7 +65,13 @@ object circe:
             children <- value.hcursor.get[List[Template]](Key.Children)
           yield Template.Headline(children)
         case Key.Linebreak => Right(Template.Linebreak)
-        case Key.Space     => Right(Template.Space)
+        case Key.Link =>
+          for
+            value <- cursor.get[Json](Key.Value)
+            children <- value.hcursor.get[List[Template]](Key.Children)
+            href <- value.hcursor.get[Attribute](Key.Href)
+          yield Template.Link(children, href)
+        case Key.Space => Right(Template.Space)
         case Key.Text =>
           for
             value <- cursor.get[Json](Key.Value)
@@ -85,7 +92,12 @@ object circe:
       )
     case Template.Headline(children) =>
       JsonObject(Key.Type := Key.Headline, Key.Value := JsonObject(Key.Children := children))
-    case Template.Linebreak      => JsonObject(Key.Type := Key.Linebreak)
+    case Template.Linebreak => JsonObject(Key.Type := Key.Linebreak)
+    case Template.Link(children, href) =>
+      JsonObject(
+        Key.Type := Key.Link,
+        Key.Value := JsonObject(Key.Children := children.asJson, Key.Href := href.asJson)
+      )
     case Template.Space          => JsonObject(Key.Type := Key.Space)
     case Template.Text(children) => JsonObject(Key.Type := Key.Text, Key.Value := JsonObject(Key.Children := children))
 

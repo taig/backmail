@@ -13,6 +13,8 @@ object dsl:
 
   val linebreak: Template.Linebreak.type = Template.Linebreak
 
+  def link(href: Attribute)(children: Template*): Template.Link = Template.Link(children.toList, href)
+
   val space: Template.Space.type = Template.Space
 
   def text(values: Value*): Template.Text = Template.Text(values.toList)
