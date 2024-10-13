@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.1
+
+_2024-10-13_
+
+- Add alert dsl helpers
+
 ## 0.2.0
 
 _2024-10-13_
