@@ -1,6 +1,6 @@
 import sbtcrossproject.CrossProject
+
 val Version = new {
-  val Circe = "0.14.10"
   val MUnit = "1.0.2"
   val Scala = "3.3.4"
 }
@@ -41,7 +41,7 @@ lazy val root = module(identifier = None)
         Nil
     }
   )
-  .aggregate(core, circe)
+  .aggregate(core)
 
 lazy val core = module(identifier = Some("core"))
   .settings(
@@ -49,11 +49,3 @@ lazy val core = module(identifier = Some("core"))
       "org.scalameta" %%% "munit" % Version.MUnit % "test" ::
         Nil
   )
-
-lazy val circe = module(identifier = Some("circe"))
-  .settings(
-    libraryDependencies ++=
-      "io.circe" %%% "circe-core" % Version.Circe ::
-        Nil
-  )
-  .dependsOn(core % "compile->compile;test->test")
