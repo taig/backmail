@@ -1,7 +1,7 @@
 package io.taig.backmail
 
-import munit.FunSuite
 import io.taig.backmail.dsl.*
+import munit.FunSuite
 
 final class PlaintextPrinterTest extends FunSuite:
   val sample = message(title = "Title")(

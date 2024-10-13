@@ -1,9 +1,9 @@
 package io.taig.backmail
 
-import munit.FunSuite
 import io.circe.syntax.*
-import io.taig.backmail.dsl.*
 import io.taig.backmail.circe.given
+import io.taig.backmail.dsl.*
+import munit.FunSuite
 
 final class CirceCodecTest extends FunSuite:
   val sample = message(title = "Title")(

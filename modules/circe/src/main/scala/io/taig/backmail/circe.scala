@@ -1,11 +1,11 @@
 package io.taig.backmail
 
-import io.circe.Encoder
-import io.circe.JsonObject
-import io.circe.syntax.*
 import io.circe.Decoder
 import io.circe.DecodingFailure
+import io.circe.Encoder
 import io.circe.Json
+import io.circe.JsonObject
+import io.circe.syntax.*
 
 object circe:
   private object Key:

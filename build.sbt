@@ -36,7 +36,8 @@ lazy val root = module(identifier = None)
     blowoutGenerators ++= {
       val workflows = file(".github") / "workflows"
       BlowoutYamlGenerator.lzy(workflows / "main.yml", GitHubActionsGenerator.main) ::
-        BlowoutYamlGenerator.lzy(workflows / "branches.yml", GitHubActionsGenerator.branches) ::
+        BlowoutYamlGenerator.lzy(workflows / "pull-request.yml", GitHubActionsGenerator.pullRequest) ::
+        BlowoutYamlGenerator.lzy(workflows / "tag.yml", GitHubActionsGenerator.tag) ::
         Nil
     }
   )
