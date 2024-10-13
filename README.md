@@ -11,7 +11,6 @@ Creating beautiful transactional HTML emails is usually a horrible experience. S
 ```sbt
 libraryDependencies ++=
   "io.taig" %% "backmail-core" % "x.y.z" ::
-  "io.taig" %% "backmail-circe" % "x.y.z" ::
   Nil
 ```
 
@@ -79,7 +78,7 @@ Lorem ipusm dolar sit amet.
 
 Now this is where things get interesting:
 
-1. Start by picking an HTML email templating generator of your choice (e.g. [Maizzle](https://maizzle.com) or [Bootstrap Email](https://bootstrapemail.com))
+1. Start by picking an HTML email templating generator of your choice (e.g. [Maizzle](https://maizzle.com) (recommended) or [Bootstrap Email](https://bootstrapemail.com))
 2. Create a template that includes a headline, a button and paragraphs of text
 3. Use the generated HTML to implement your own `HtmlPrinter`
 
