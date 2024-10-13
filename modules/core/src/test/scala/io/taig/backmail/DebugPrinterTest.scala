@@ -11,11 +11,12 @@ final class DebugPrinterTest extends FunSuite:
     space,
     button(href = attr(plain("?token="), secret("foobar")))(text("Confirm email")),
     space,
-    block(paragraph = false)(
+    block(paragraph = true)(
       link(href = attr(plain("?token="), secret("foobar")))(text("Hyperlink"))
     ),
+    block(paragraph = false)(text("Lorem ipusm dolar sit amet.")),
     space,
-    block(paragraph = false)(text("Lorem ipusm dolar sit amet."))
+    alert(text("Lorem ipsum dolar sit amet."))
   )
 
   test("print"):
@@ -31,6 +32,10 @@ final class DebugPrinterTest extends FunSuite:
         |
         |Hyperlink: ?token=******
         |
-        |Lorem ipusm dolar sit amet.""".stripMargin
+        |Lorem ipusm dolar sit amet.
+        |
+        |***
+        |Lorem ipsum dolar sit amet.
+        |***""".stripMargin
 
     assertEquals(obtained = DebugPrinter.print(sample), expected)

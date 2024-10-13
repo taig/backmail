@@ -11,11 +11,12 @@ final class PlaintextPrinterTest extends FunSuite:
     space,
     button(href = attr(plain("?token="), secret("foobar")))(text("Confirm email")),
     space,
-    block(paragraph = false)(
+    block(paragraph = true)(
       link(href = attr(plain("?token="), secret("foobar")))(text("Hyperlink"))
     ),
+    block(paragraph = false)(text("Lorem ipusm dolar sit amet.")),
     space,
-    block(paragraph = false)(text("Lorem ipusm dolar sit amet."))
+    alert(text("Lorem ipsum dolar sit amet."))
   )
 
   test("print"):
@@ -31,6 +32,10 @@ final class PlaintextPrinterTest extends FunSuite:
         |
         |Hyperlink (?token=foobar)
         |
-        |Lorem ipusm dolar sit amet.""".stripMargin
+        |Lorem ipusm dolar sit amet.
+        |
+        |***
+        |Lorem ipsum dolar sit amet.
+        |***""".stripMargin
 
     assertEquals(obtained = PlaintextPrinter.print(sample), expected)

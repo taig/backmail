@@ -25,3 +25,14 @@ object dsl:
 
   def attr(values: Value*): Attribute = Attribute(values.toList)
   def attr(value: String): Attribute = attr(Value.Plain(value))
+
+  object alert:
+    def apply(variant: Template.Alert.Variant = alert.variant.info)(children: Template*): Template.Alert =
+      Template.Alert(children = children.toList, variant)
+
+    def apply(children: Template*): Template.Alert = alert()(children*)
+
+    object variant:
+      val info: Template.Alert.Variant = Template.Alert.Variant.Info
+      val error: Template.Alert.Variant = Template.Alert.Variant.Error
+      val warning: Template.Alert.Variant = Template.Alert.Variant.Warning
