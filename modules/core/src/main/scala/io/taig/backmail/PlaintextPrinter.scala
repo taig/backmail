@@ -4,6 +4,7 @@ object PlaintextPrinter extends Printer:
   override def print(email: Message): String = email.body.map(print).mkString
 
   def print(template: Template): String = template match
+    case Template.Alert(children, _) => "***\n" + children.map(print).mkString + "\n***"
     case Template.Block(children, paragraph) =>
       children.map(print).mkString + (if paragraph then "\n\n" else "")
     case Template.Button(children, href) =>
