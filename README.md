@@ -1,5 +1,7 @@
 # Backmail
 
+[![backmail Scala version support](https://index.scala-lang.org/taig/backmail/backmail/latest.svg)](https://index.scala-lang.org/taig/backmail/backmail)
+
 > Email templating utilities
 
 ## Motivation
