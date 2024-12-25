@@ -2,12 +2,10 @@ package io.taig.backmail
 
 enum Template:
   case Alert(children: List[Template], variant: Template.Alert.Variant)
-  case Block(children: List[Template], paragraph: Boolean)
+  case Block(children: List[Template], gutter: Template.Block.Gutter)
   case Button(children: List[Template], href: Attribute)
   case Headline(children: List[Template])
-  case Linebreak
   case Link(children: List[Template], href: Attribute)
-  case Space
   case Text(children: List[Value])
 
 object Template:
@@ -16,3 +14,9 @@ object Template:
       case Error
       case Info
       case Warning
+
+  object Block:
+    enum Gutter:
+      case Large
+      case None
+      case Small
