@@ -1,10 +1,11 @@
 package io.taig.backmail
 
 object dsl:
-  self =>
+  def message(title: String, summary: Option[String] = None)(body: Template*): Message =
+    Message(title, summary, body = body.toList)
 
-  def message(title: String, preheader: Option[String] = None)(message: Template*): Message =
-    Message(title, preheader, message.toList)
+  def message(title: String, summary: String)(body: Template*): Message =
+    message(title, summary = Some(summary))(body*)
 
   def block(
       element: Template.Block.Element,
