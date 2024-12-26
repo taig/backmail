@@ -5,16 +5,14 @@ import munit.FunSuite
 
 final class PlaintextPrinterTest extends FunSuite:
   val sample = message(title = "Title")(
-    headline(text("Title")),
-    block(
+    section(
+      headline(text("Title")),
       paragraph(plain("Plaintext"), plain(" "), secret("Secret")),
-      paragraph(truncated = true)(plain("Lorem ipusm dolar sit amet."))
-    ),
-    block(
+      paragraph(
+        plain("Lorem ipusm dolar sit amet. "),
+        link(href = attr(plain("?token="), secret("foobar")))("Hyperlink")
+      ),
       button(href = attr(plain("?token="), secret("foobar")))(text("Confirm email"))
-    ),
-    block(
-      link(href = attr(plain("?token="), secret("foobar")))(text("Hyperlink"))
     ),
     alert(text("Lorem ipsum dolar sit amet."))
   )
@@ -25,11 +23,10 @@ final class PlaintextPrinterTest extends FunSuite:
         |
         |Plaintext Secret
         |
-        |Lorem ipusm dolar sit amet.
+        |Lorem ipusm dolar sit amet. Hyperlink (?token=foobar)
         |
         |Confirm email: ?token=foobar
         |
-        |Hyperlink (?token=foobar)
         |
         |***
         |Lorem ipsum dolar sit amet.
