@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.3.0
+
+_2024-12-27_
+
+- Add additional message dsl builder
+- Rename Message.preheader to .summary
+- Rethink Template structure for better composability
+- Upgrade to munit 1.0.3
+- Upgrade to sbt-houserules 0.11.1
+- Upgrade to sbt-blowout 0.1.2
+- Upgrade to sbt-ci-release 1.9.2
+- Upgrade to sbt 1.10.7
+- Add version badge
+
 ## 0.2.1
 
 _2024-10-13_
