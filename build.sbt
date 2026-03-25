@@ -1,7 +1,7 @@
 import sbtcrossproject.CrossProject
 
 val Version = new {
-  val MUnit = "1.0.3"
+  val MUnit = "1.2.4"
   val Scala = "3.3.4"
 }
 
