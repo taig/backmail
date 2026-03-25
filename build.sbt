@@ -2,7 +2,7 @@ import sbtcrossproject.CrossProject
 
 val Version = new {
   val MUnit = "1.2.4"
-  val Scala = "3.3.4"
+  val Scala = "3.3.7"
 }
 
 def module(identifier: Option[String]): CrossProject = {
