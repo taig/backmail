@@ -23,7 +23,7 @@ jobs:
         distribution: temurin
         java-version: '21'
     - name: Setup sbt
-      uses: actions/setup-sbt@v1
+      uses: sbt/setup-sbt@v1
     - name: Workflows
       run: sbt blowoutCheck
     - name: Code formatting
@@ -45,5 +45,5 @@ jobs:
         distribution: temurin
         java-version: '21'
     - name: Setup sbt
-      uses: actions/setup-sbt@v1
+      uses: sbt/setup-sbt@v1
     - run: sbt test
